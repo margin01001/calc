@@ -1,0 +1,66 @@
+.page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.calc-block{
+    display: flex;
+    background-color: black;
+    height: 600px;
+    width: 400px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.display{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 40px;
+    width: 100%;
+    height: 15%;
+    background-color: black;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+.integers{
+    display: flex;
+    width: 75%;
+    height: 85%;
+    background-color: blue;
+    flex-wrap: wrap;
+}
+.operations{
+    display: flex;
+    width: 25%;
+    height: 85%;
+    flex-wrap: wrap;
+    background-color: darkcyan;
+}
+.int-button{
+    flex-grow: 1;
+    flex-basis: 100px; 
+    font-size: x-large;
+    cursor: pointer;
+}
+.oper-button{
+    flex-grow: 1;
+    flex-basis: 100px;
+    font-size: xx-large;
+    cursor: pointer;
+    background-color:darkorange;
+    color: white;
+}
+.oper-button:hover{
+    background-color: rgb(243, 133, 55);
+}
+.oper-button:active{
+    background-color:orange;
+}
+.input{
+    width: 100%;
+    height: 100%;
+    font-size:xx-large;
+    background-color: black;
+    color: white;
+}
