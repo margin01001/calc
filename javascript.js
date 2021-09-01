@@ -1,4 +1,5 @@
 let total = 0, userInput = "0", prevPress;
+let operator = null;
 
 let screen = document.querySelector(".word");
 
@@ -19,6 +20,7 @@ function buttonClick(value){
     else{
         handleNumber(value);
     }
+    rerender();
 }
 
 function handleNumber(value){
@@ -28,7 +30,6 @@ function handleNumber(value){
     else{
         userInput += value;  
     }
-    rerender();
 }
 
 function handleSymbol(value){
@@ -36,31 +37,58 @@ function handleSymbol(value){
         case 'C':
             userInput = "0";
             total = 0;
-            break;
-        case '%':
-            userInput += "%";
+            operator = null;
             break;
         case 'Delete':
             userInput = userInput.slice(0, -1);
             break;
-        case '/':
-            userInput += "/";
-            break;
-        case '*':
-            userInput += "*";
-            break;
-        case '-':
-            userInput += '-';
-            break;
-        case '+':
-            userInput += '+';
-            break;
         case '=':
-            userInput += '=';
-            
+            if(operator === null){
+                return;
+            }
+            flushOperation(parseInt(userInput));
+            operator = null;
+            userInput = "" + total;
+            break;
+        default:
+            handleMath(value);
             break;
     }
-    rerender();
+}
+
+function handleMath(value){
+    const intBuffer = parseInt(userInput);
+    
+    if(total === 0){
+        total = intBuffer;
+    }
+    else{
+        flushOperation(intBuffer);
+    }
+
+    operator = value;
+    userInput = "0";
+}
+
+function flushOperation(intBuffer){
+    
+    switch (operator){
+        case '+':
+            total += intBuffer;
+            break;
+        case '-':
+            total -= intBuffer;
+            break;
+        case '/':
+            total /= intBuffer;
+            break;
+        case '*':
+            total *= intBuffer;
+            break;
+        case '%':
+            total %= intBuffer;
+            break;
+    }
 }
 
 function rerender(){
